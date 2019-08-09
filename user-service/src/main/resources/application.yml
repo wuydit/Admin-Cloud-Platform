@@ -1,0 +1,8 @@
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  profiles:
+    active: @profileActive@
+server:
+  servlet:
+    context-path: /user-service
