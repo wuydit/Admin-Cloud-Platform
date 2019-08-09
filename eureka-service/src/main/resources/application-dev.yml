@@ -1,2 +1,7 @@
 server:
   port: 8031
+spring:
+  security:
+    user:
+      name: admin
+      password: 123456

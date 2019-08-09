@@ -1,0 +1,14 @@
+server:
+  port: 8032
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@eureka-service:8031/eureka-service/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    hostname: localhost
+    prefer-ip-address: true
+
+zuul:
+  routes:
+    rest-demo: /rest/**

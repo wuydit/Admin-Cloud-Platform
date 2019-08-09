@@ -2,19 +2,17 @@ spring:
   application:
     name: eureka-service
   profiles:
-    active: @profileActive@    #分环境配置
-  security:   #对eureka服务添加验证，防止吃瓜群众访问
-    user:
-      name: admin
-      password: 123456
+    active: @profileActive@
 eureka:
   client:
+    healthcheck:
+      enabled: true
     register-with-eureka: false
     fetch-registry: false
+    use-dns-for-fetching-service-urls: false
   instance:
     instance-id: SERVER_${spring.application.name}:${spring.application.instance_id:${random.value}}
     hostname: localhost
-
 server:
   servlet:
     context-path: /eureka-service
