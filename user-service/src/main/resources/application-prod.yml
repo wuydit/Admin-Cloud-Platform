@@ -15,16 +15,13 @@ spring:
           log-slow-sql: true
       datasource:
         master:
-          username: bidata_rw
-          password: 1ZA61r2Suqn9aqmaeclr
+          username:
+          password:
           driver-class-name: com.mysql.jdbc.Driver
-          url: jdbc:mysql://10.2.1.74:3306/BIdata?characterEncoding=utf8&useSSL=true
+          url:
 logback:
   appName: user-service
   logDir: logs/user-service
-
-
-
 
 server:
   port: 8033

@@ -17,10 +17,10 @@ spring:
           log-slow-sql: true
       datasource:
         master:
-          username: dev
-          password: dev
+          username:
+          password:
           driver-class-name: com.mysql.jdbc.Driver
-          url: jdbc:mysql://172.28.14.115:3306/BusinessLog?characterEncoding=utf8&useSSL=true
+          url:
 logback:
   appName: user-service
   logDir: logs/user-service
