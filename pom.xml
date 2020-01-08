@@ -5,24 +5,22 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.2.2.RELEASE</version>
+        <relativePath/>
     </parent>
     <groupId>org.wuyd</groupId>
     <artifactId>admin-cloud-platform</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>admin-cloud-platform</name>
-    <description>Admin-Cloud-Platform是基于Spring Cloud微服务化开发平台。 平台具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API
-        管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。 代码简洁，架构清晰，适合学习和直接项目中使用。 核心技术采用Spring Boot 2.1.6以及Spring Cloud
-        (Greenwich.RELEASE) 相关核心组件。 苞米豆团队的动态数据源，mybatis-puls集成。 采用Docker与Jenkins K8s的持续集成方案
-    </description>
+    <description>Admin-Cloud-Platform</description>
 
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+        <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
     </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -38,15 +36,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.SR2</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <!-- Import dependency management from Spring Boot -->
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>Hoxton.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -55,8 +45,8 @@
 
     <repositories>
         <repository>
-            <id>alimaven</id>
-            <name>aliyun maven</name>
+            <id>aliYunMaven</id>
+            <name>aliYunMaven</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
