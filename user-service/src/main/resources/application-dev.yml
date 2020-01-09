@@ -1,31 +1,31 @@
-
 spring:
-  datasource:
-    druid:
-      stat-view-servlet:
-        loginUsername: admin
-        loginPassword: 123456
-    dynamic:
-      p6spy: true # 默认false,建议线上关闭。
-      druid: #以下是全局默认值，可以全局更改
-        minIdle: 5
-        maxActive: 20
-        filters: stat,wall # 注意这个值和druid原生不一致，默认启动了stat,wall
-        stat:
-          merge-sql: true
-          log-slow-sql: true
-      datasource:
-        master:
-          username: root
-          password:
-          driver-class-name: com.mysql.jdbc.Driver
-          url:
-logback:
-  appName: user-service
-  logDir: logs/user-service
-
-
-
-
+  application:
+    name: user-service
+logging:
+  level:
+    com.wuyd.acp.oauthservice: debug
+  file:
+    total-size-cap: 2GB
+    name: ${logging.file.path}/demo.log
+    path: logs
+    max-size: 10MB
+    max-history: 30
+  pattern:
+    rolling-file-name: ${logging.file.path}/demo.%d{yyyy-MM-dd}-%i.log
 server:
   port: 8033
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@eureka-service:8031/eureka-service/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    hostname: localhost
+    prefer-ip-address: true
+
+security:
+  oauth2:
+    resource:
+      id: user-service
+      user-info-uri: http://localhost:8034/auth/api/member
+      prefer-token-info: false

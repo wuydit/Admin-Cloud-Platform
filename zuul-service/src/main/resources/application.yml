@@ -3,6 +3,3 @@ spring:
     name: zuul-service
   profiles:
     active: @profileActive@
-server:
-  servlet:
-    context-path: /zuul-service

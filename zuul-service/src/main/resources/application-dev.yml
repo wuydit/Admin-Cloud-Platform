@@ -1,5 +1,5 @@
 server:
-  port: 8032
+  port: 8034
 eureka:
   client:
     service-url:
@@ -9,6 +9,36 @@ eureka:
     hostname: localhost
     prefer-ip-address: true
 
+spring:
+  application:
+    name: zuul-service
+#--------------------Zuul-----------------------
 zuul:
   routes:
-    rest-demo: /rest/**
+    member:
+      path: /user/**
+      serviceId: user-service
+      sensitiveHeaders: "*"
+    auth:
+      path: /auth/**
+      serviceId: auth-service
+      sensitiveHeaders: "*"
+  retryable: false
+  ignored-services: "*"
+  ribbon:
+    eager-load:
+      enabled: true
+  host:
+    connect-timeout-millis: 3000
+    socket-timeout-millis: 3000
+  add-proxy-headers: true
+#---------------------OAuth2---------------------
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:${server.port}/auth/oauth/token
+      user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
+      client-id: web
+    resource:
+      user-info-uri:  http://localhost:${server.port}/auth/api/member
+      prefer-token-info: false
