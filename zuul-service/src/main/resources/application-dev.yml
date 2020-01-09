@@ -42,3 +42,14 @@ security:
     resource:
       user-info-uri:  http://localhost:${server.port}/auth/api/member
       prefer-token-info: false
+logging:
+  level:
+    com.wuyd.acp.oauthservice: debug
+  file:
+    total-size-cap: 2GB
+    name: ${logging.file.path}/zuul-service.log
+    path: logs
+    max-size: 10MB
+    max-history: 30
+  pattern:
+    rolling-file-name: ${logging.file.path}/zuul-service.%d{yyyy-MM-dd}-%i.log

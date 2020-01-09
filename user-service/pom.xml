@@ -69,24 +69,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- ORM  -->
-<!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
-<!--            <version>${mybatis-plus-boot-starter.version}</version>-->
-<!--        </dependency>-->
-        <!-- Mysql驱动-->
-<!--        <dependency>-->
-<!--            <groupId>mysql</groupId>-->
-<!--            <artifactId>mysql-connector-java</artifactId>-->
-<!--            <version>${mysql-connector.version}</version>-->
-<!--        </dependency>-->
-        <!-- 阿里数据源-->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba</groupId>-->
-<!--            <artifactId>druid-spring-boot-starter</artifactId>-->
-<!--            <version>${druid-spring-boot-starter.version}</version>-->
-<!--        </dependency>-->
         <!-- HttpClient 组件 -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

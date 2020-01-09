@@ -6,12 +6,12 @@ logging:
     com.wuyd.acp.oauthservice: debug
   file:
     total-size-cap: 2GB
-    name: ${logging.file.path}/demo.log
+    name: ${logging.file.path}/user-service.log
     path: logs
     max-size: 10MB
     max-history: 30
   pattern:
-    rolling-file-name: ${logging.file.path}/demo.%d{yyyy-MM-dd}-%i.log
+    rolling-file-name: ${logging.file.path}/user-service.%d{yyyy-MM-dd}-%i.log
 server:
   port: 8033
 eureka:
