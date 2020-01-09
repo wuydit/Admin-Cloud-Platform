@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.wuyd.acp.oauthservice.service.impl.RedisTokenStore;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.wuyd.acp.oauthservice.service.impl.SysUserDetailsServiceImpl;
 
 import javax.sql.DataSource;
