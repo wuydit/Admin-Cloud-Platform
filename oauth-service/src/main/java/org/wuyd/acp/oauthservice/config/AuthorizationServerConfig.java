@@ -29,24 +29,27 @@ import javax.sql.DataSource;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
     private DataSource dataSource;
 
-    @Autowired
+    private AuthenticationManager authenticationManager;
+
     private RedisConnectionFactory redisConnectionFactory;
 
-    @Autowired
     private SysUserDetailsServiceImpl userDetailsService;
 
+    public AuthorizationServerConfig(DataSource dataSource,
+                                     AuthenticationManager authenticationManager,
+                                     RedisConnectionFactory redisConnectionFactory,
+                                     SysUserDetailsServiceImpl userDetailsService) {
+        this.dataSource = dataSource;
+        this.authenticationManager = authenticationManager;
+        this.redisConnectionFactory = redisConnectionFactory;
+        this.userDetailsService = userDetailsService;
+    }
+
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security
-                .allowFormAuthenticationForClients()
-                .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+    public void configure(AuthorizationServerSecurityConfigurer security){
+        security.allowFormAuthenticationForClients().tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
     }
 
     @Bean
@@ -56,20 +59,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        // clients.withClientDetails(clientDetails());
         clients.inMemory()
-                .withClient("android")
-                .scopes("read")
-                .secret("android")
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                .and()
-                .withClient("webapp")
-                .scopes("read")
-                .authorizedGrantTypes("implicit");
-//                .and()
-//                .withClient("browser")
-//                .authorizedGrantTypes("refresh_token", "password")
-//                .scopes("read");
+                .withClient("browser")
+                .secret("admin-cloud-platform")
+                .authorizedGrantTypes("password","refresh_token");
     }
     @Bean
     public ClientDetailsService clientDetails() {
@@ -77,27 +70,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore())
-                .userDetailsService(userDetailsService)
-                .authenticationManager(authenticationManager);
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints){
+        endpoints.tokenStore(tokenStore()).userDetailsService(userDetailsService).authenticationManager(authenticationManager);
         endpoints.tokenServices(defaultTokenServices());
     }
 
-    /**
-     * <p>注意，自定义TokenServices的时候，需要设置@Primary，否则报错，</p>
-     * @return
-     */
     @Primary
     @Bean
     public DefaultTokenServices defaultTokenServices(){
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setTokenStore(tokenStore());
         tokenServices.setSupportRefreshToken(true);
-        //tokenServices.setClientDetailsService(clientDetails());
-        // token有效期自定义设置，默认12小时
-        tokenServices.setAccessTokenValiditySeconds(60*60*12);
-        // refresh_token默认30天
+        // token有效期自定义设置，默认2小时
+        tokenServices.setAccessTokenValiditySeconds(60 * 60 * 2);
+        // refresh_token默认7天
         tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);
         return tokenServices;
     }
