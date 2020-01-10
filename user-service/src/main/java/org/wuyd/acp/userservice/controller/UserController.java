@@ -17,7 +17,7 @@ import java.security.Principal;
 public class UserController {
 
     @GetMapping("hello")
-    @PreAuthorize("hasAnyAuthority('hello')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','user:hello')")
     public ResponseEntity hello(){
         return ResponseEntity.ok("hello");
     }
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("query")
-    @PreAuthorize("hasAnyAuthority('query')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity query() {
         return ResponseEntity.ok("具有query权限");
     }
